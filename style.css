@@ -68,6 +68,9 @@ img {
 
 .product-card__category {
   margin-top: 0;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5ch;
 }
 
 .product-card__title {
