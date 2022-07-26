@@ -50,6 +50,8 @@ img {
 
 .product-card {
   background-color: var(--bg-card);
+  max-width: min(90%, 24rem);
+  margin-inline: auto;
 
   font-family: "Montserrat", sans-serif;
   font-size: 0.875rem;
