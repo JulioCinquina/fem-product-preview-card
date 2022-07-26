@@ -74,6 +74,7 @@ img {
 }
 
 .product-card__title {
+  margin-top: 0;
   font-family: "Fraunces", serif;
   font-weight: 700;
   line-height: 1;
