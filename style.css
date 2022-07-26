@@ -2,6 +2,12 @@
 font-family: "Roboto", sans-serif;
 font-family: "Montserrat", sans-serif;
 font-family: "Fraunces", serif;
+
+https://css-tricks.com/a-complete-guide-to-links-and-buttons/
+
+https://a11y-guidelines.orange.com/en/web/components-examples/price-vocalization/
+
+https://www.a11yproject.com/posts/how-to-hide-content/
 */
 
 :root {
@@ -23,6 +29,16 @@ body {
 img {
   display: block;
   max-width: 100%;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 .product-card {
