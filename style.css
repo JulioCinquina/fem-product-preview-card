@@ -12,6 +12,12 @@ https://www.a11yproject.com/posts/how-to-hide-content/
 
 :root {
   box-sizing: border-box;
+
+  --bg-body: hsl(30, 38%, 92%);
+  --bg-card: hsl(0, 0%, 100%);
+  --clr-accent: hsl(158, 36%, 37%);
+  --clr-dark: hsl(212, 21%, 14%);
+  --clr-light: hsl(228, 12%, 48%);
 }
 
 *,
@@ -21,6 +27,7 @@ https://www.a11yproject.com/posts/how-to-hide-content/
 }
 
 body {
+  background-color: var(--bg-body);
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
   margin: 0;
@@ -42,19 +49,24 @@ img {
 }
 
 .product-card {
+  background-color: var(--bg-card);
+
   font-family: "Montserrat", sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
+  color: var(--clr-light);
 }
 
 .product-card__title {
   font-family: "Fraunces", serif;
   font-weight: 700;
+  color: var(--clr-dark);
 }
 
 .product-card__price {
   font-family: "Fraunces", serif;
   font-weight: 700;
+  color: var(--clr-accent);
 }
 
 .product-card__price-old {
