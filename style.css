@@ -62,9 +62,18 @@ img {
   overflow: hidden;
 }
 
+.product-card__body {
+  padding: 1.5rem;
+}
+
+.product-card__category {
+  margin-top: 0;
+}
+
 .product-card__title {
   font-family: "Fraunces", serif;
   font-weight: 700;
+  line-height: 1;
   color: var(--clr-dark);
 }
 
