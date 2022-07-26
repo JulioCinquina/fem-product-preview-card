@@ -57,6 +57,9 @@ img {
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--clr-light);
+
+  border-radius: 0.625rem;
+  overflow: hidden;
 }
 
 .product-card__title {
