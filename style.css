@@ -25,6 +25,31 @@ img {
   max-width: 100%;
 }
 
+.product-card {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.product-card__title {
+  font-family: "Fraunces", serif;
+  font-weight: 700;
+}
+
+.product-card__price {
+  font-family: "Fraunces", serif;
+  font-weight: 700;
+}
+
+.product-card__price-old {
+  text-decoration: line-through;
+}
+
+.product-card__btn-add-to-cart {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+
 .attribution {
   font-size: 11px;
   text-align: center;
