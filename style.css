@@ -81,9 +81,22 @@ img {
   color: var(--clr-dark);
 }
 
+.product-card__prices {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.product-card__prices > * {
+  margin: 0;
+  margin-bottom: 0.75rem;
+}
+
 .product-card__price {
   font-family: "Fraunces", serif;
   font-weight: 700;
+  font-size: 2rem;
   color: var(--clr-accent);
 }
 
