@@ -152,6 +152,7 @@ img {
 }
 
 .product-card__btn-add-to-cart:focus,
+.product-card__btn-add-to-cart:focus-visible,
 .product-card__btn-add-to-cart:hover {
   background-color: var(--btn-bg-focus);
 }
