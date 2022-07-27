@@ -72,6 +72,7 @@ img {
   color: var(--clr-light);
 
   border-radius: 0.625rem;
+  box-shadow: 0 0 10px hsla(0, 0%, 50%, 0.15);
   overflow: hidden;
 
   display: flex;
