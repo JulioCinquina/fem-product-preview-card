@@ -20,6 +20,8 @@ https://www.a11yproject.com/posts/how-to-hide-content/
   --clr-dark: hsl(212, 21%, 14%);
   --clr-light: hsl(228, 12%, 48%);
 
+  --clr-links: hsl(228, 45%, 44%);
+
   --btn-bg: hsl(158, 36%, 37%);
   --btn-bg-focus: hsl(156, 42%, 18%);
   --btn-txt: hsl(0, 0%, 100%);
@@ -174,11 +176,13 @@ img {
 }
 
 .attribution {
-  font-size: 11px;
+  padding-block-start: 1rem;
+  padding-block-end: 0.25rem;
+  font-size: 0.6875rem;
   text-align: center;
 }
 .attribution a {
-  color: hsl(228, 45%, 44%);
+  color: var(--clr-links);
 }
 
 @media screen and (min-width: 48rem) {
