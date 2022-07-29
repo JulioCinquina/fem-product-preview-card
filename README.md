@@ -1,92 +1,119 @@
-# Frontend Mentor - Product preview card component
+# Frontend Mentor - Product preview card component solution
 
-![Design preview for the Product preview card component coding challenge](./design/desktop-preview.jpg)
+This is a solution to the [Product preview card component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-preview-card-component-GO7UmttRfa).
 
-## Welcome! 👋
+The card features a **responsive layout** and was created in a **mobile-first workflow** with **accessibility** in mind. Its button has **hover, focus and active states** to provide feedback to the user and ensure great **tab navigation**.
 
-Thanks for checking out this front-end coding challenge.
+## Links
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+- [Solution on Frontend Mentor]()
+- [Live Site on GitHub Pages]()
 
-**To do this challenge, you need a basic understanding of HTML and CSS.**
+## Screenshots
 
-## The challenge
+|                                      Mobile                                      |     |                                       Desktop                                        |
+| :------------------------------------------------------------------------------: | :-: | :----------------------------------------------------------------------------------: |
+| ![Vertical product card for mobile devices](./screenshots/screenshot-mobile.jpg) |     | ![Horizontal product card for desktop devices](./screenshots/screenshot-desktop.jpg) |
 
-Your challenge is to build out this product preview card component and get it looking as close to the design as possible.
+## My process
 
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
+### What I learned
 
-Your users should be able to:
+#### Accessibility
 
-- View the optimal layout depending on their device's screen size
-- See hover and focus states for interactive elements
+The design presented an interesting **accessibility-related challenge**: the card contains the current (discounted) price and the crossed-out original price, but most screen readers do not describe the latter as crossed-out text when reading it out. To ensure a great experience for all users, a **visually-hidden sentence** describing the prices is included, while the displayed prices are hidden from screen readers with `aria-hidden="true"`:
 
-Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
+```html
+<!-- Hidden from screen readers -->
+<div class="product-card__prices" aria-hidden="true">
+  <p class="product-card__price">$149.99</p>
+  <s class="product-card__price-old">$169.99</s>
+</div>
 
-## Where to find everything
+<!-- Visually-hidden text -->
+<p class="visually-hidden">For $149.99 instead of $169.99</p>
+```
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
+```css
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+  /* Source: https://www.a11yproject.com/posts/how-to-hide-content/ */
+}
+```
 
-If you would like the design files (we provide Sketch & Figma versions) to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+#### Responsive design
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
+The card must adapt its layout and display a different (bigger or smaller) image depending on the device's screen width. To achieve that, **Flexbox** and **media queries** were used in a **mobile-first workflow**. The card is coded primarily for mobile devices, with its elements stacked vertically.
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+In devices with a viewport width larger than 48 rems (768 px in the default 16 px font size), the card's layout becomes horizontal and a bigger product image is displayed. Moreover, the `flex-basis` property is used to divide the card equally in half:
 
-## Building your project
+```css
+@media screen and (min-width: 48rem) {
+  .product-card {
+    flex-direction: row;
+    max-width: min(90%, 38rem);
+  }
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+  /* (...) */
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+  .product-card__mobile-img {
+    display: none;
+  }
 
-## Deploying your project
+  .product-card__desktop-img {
+    display: block;
+  }
 
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
+  .product-card__img,
+  .product-card__body {
+    flex-basis: 50%;
+  }
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+  /* (...) */
+}
+```
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+#### Button with different states
 
-## Create a custom `README.md`
+Every browser has different default styles for the `<button>` element. To ensure the same design is seen across browsers, `all: unset` is used to create a clean slate on which the button can be styled.
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+When hovered or focused, the button's `background-color` becomes darker. To create a great **tab navigation** experience, it also receives an outline in its `focus-visible` state — with proper contrast with the background and an offset to ensure it stands out. Finally, to give the user feedback indicating that the button has been clicked, it is slightly shrunk in its `active` state.
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+The look of the button transitions nicely in a few milliseconds when changing states, but the user preferences are respected: a media query disables all animations, transitions and smooth scrolling if the user **prefers reduced motion**.
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+<table align="center">
+  <tr>
+    <td align="center"><img src="./screenshots/screenshot-states.gif" alt="GIF showing the hover, focus and active states of the add to cart button in a product card"></td>
+  </tr>
+  <tr>
+    <td align="center">The different states of the button.</td>
+  </tr>
+</table>
 
-## Submitting your solution
+#### Other skills
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
+In this project, I also practiced the use of **Git** — including branching, merging, and the `git stash` command —, **semantic HTML markup**, **CSS custom properties** and the **BEM naming convention**.
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+### Continued development
 
-## Sharing your solution
+In future projects, I want to give the user more feedback when interacting with buttons. This could be achieved by changing the "Add to cart" button text to "Item added to cart ✅" via a CSS animation or by displaying a toast message, for example.
 
-There are multiple places you can share your solution:
+I also want to keep learning about the best practices when it comes to creating great experiences for users who rely on assistive technologies to navigate the web.
 
-1. Share your solution page in the **#finished-projects** channel of the [Slack community](https://www.frontendmentor.io/slack). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+### Useful resources
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+- [_A Complete Guide to Links and Buttons_ — Chris Coyier (CSS-Tricks)](https://css-tricks.com/a-complete-guide-to-links-and-buttons/) - This guide covers many of the aspects that should be considered when working with links, buttons and button-like inputs.
+- [_How-to: Hide content_ — Dave Rupert (The A11Y Project)](https://www.a11yproject.com/posts/how-to-hide-content/) - This short how-to covers the best practices for visually hiding content while still making it available to assistive technologies. It is the source of the `visually-hidden` CSS class used in this project.
+- [_Price vocalization_ — Orange digital accessibility guidelines](https://a11y-guidelines.orange.com/en/web/components-examples/price-vocalization/) - Orange's guidelines for price vocalization contain examples on how to code prices in a screen reader-friendly way.
+- [_A Modern CSS Reset_ — Andy Bell](https://piccalil.li/blog/a-modern-css-reset/) - The media query for reduced motion is part of Andy Bell's Modern CSS Reset.
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+## Author
 
-## Got feedback for us?
-
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
-
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
-
-**Have fun building!** 🚀
+- Frontend Mentor - [@JulioCinquina](https://www.frontendmentor.io/profile/JulioCinquina)
