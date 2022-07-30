@@ -6,8 +6,8 @@ The card features a **responsive layout** and was created in a **mobile-first wo
 
 ## Links
 
-- [Solution on Frontend Mentor]()
-- [Live Site on GitHub Pages]()
+- [Solution on Frontend Mentor](https://www.frontendmentor.io/solutions/accessible-and-responsive-product-card-with-flexbox-and-media-queries-Q53W3Xwlbc)
+- [Live Site on GitHub Pages](https://juliocinquina.github.io/fem-product-preview-card/)
 
 ## Screenshots
 
